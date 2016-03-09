@@ -1,12 +1,13 @@
 // require Angular Module
 
-var app = angular.module('todo', []);
+var app = angular.module('todo', ['ngResource']);
 
 // Require factory angular service
 
-app.factory('models', [function(){
+app.factory('models', ['$resource',function($resource){
+	var items_model = $resource("items/:id.json", {id: "@id"});
 	var x = {
-		items: []
+		items: items_model
 	};
 	return x;
 }]);
@@ -21,18 +22,20 @@ $(document).on('ready page:load', function() {
 app.controller('ItemsCtrl', ['$scope', 'models', function($scope, models){
 
 	// Setting items = to our models factory
-	$scope.items = models.items;
+	$scope.items = models.items.query();
   
   // Add an item
   $scope.addItem = function(){
-  	if(!$scope.newItem.desc === ''){ return; }
-  	// if user doesn't select crit value, auto-assign '3'
-  	// if(!$scope.newItem.crit === ''){ return '3'}
-	  $scope.items.push($scope.newItem);
+  	item = models.items.save($scope.newItem, function(){
+  		recent_item = models.items.get({id: item.id});
+  		$scope.items.push(recent_item);
+  		$scope.newOrder = '';
+  	});
 }
   
   //Delete an item
   $scope.deleteItem = function(item){
+  	models.items.delete(item);
   	$scope.items.splice($scope.items.indexOf(item), 1);
   }
 }]);

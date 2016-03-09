@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
-  respond_to :json
+  skip_before_action :verify_authenticity_token
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :create, :new]
+  respond_to :json, :html
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all.to_json
+    @items = Item.all
     respond_with @items
   end
 

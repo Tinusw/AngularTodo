@@ -7,6 +7,8 @@
 <!-- Input -->
   <form class="form-inline" ng-submit="addItem()">
 
+     <input type="hidden" value="{{items[items.length - 1].id + 1 }}" ng-model="newItem.id">
+
     <strong>Add Item: </strong>
     <input type="text"  class="form-control" placeholder="I need to..." ng-model="newItem.desc">
 
@@ -32,7 +34,7 @@
     </thead>
     <tr ng-repeat="item in items | orderBy:'-crit':reverse">
       <td> 
-        {{item.desc}}
+        <p ng-show="item.title"><br>{{item.title}}</p>
       </td>
       <td>
         <p ng-show="item.crit"><br>{{item.crit}}</p>
