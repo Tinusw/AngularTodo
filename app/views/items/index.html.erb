@@ -1,10 +1,32 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Todo List</h1>
+
+<div ng-controller="ItemsCtrl">
+  <table class="table table-hover">
+    <thead>
+      <td> What needs to be done? </td>
+      <td> Done? </td>
+    </thead>
+    <tr ng-repeat="item in items">
+      <td> 
+        {{item.desc}}
+      </td>
+      <td>
+        {{item.done}}
+        <small ng-show="item.crit"><br>{{item.crit}}</small>
+      </td>
+  </tr>
+  </table>
+</div>
 
 
-<h1>Listing Items</h1>
 
-<table>
+
+
+
+
+<!-- <table>
   <thead>
     <tr>
       <th>Title</th>
@@ -29,3 +51,4 @@
 <br>
 
 <%= link_to 'New Item', new_item_path %>
+ -->
