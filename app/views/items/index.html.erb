@@ -2,7 +2,25 @@
 
 <h1>Todo List</h1>
 
+<!-- View Table -->
 <div ng-controller="ItemsCtrl">
+<!-- Input -->
+  <form class="form-inline">
+
+    <strong>Add Item: </strong>
+    <input type="text"  class="form-control" placeholder="I need to...">
+
+    <strong>By: </strong>
+    <input type="date" class="form-control" placeholder="">
+
+    <strong>Criticality: </strong>
+    <input type="number" class="form-control" min ="1" max="3" placeholder="3">
+    
+    <strong>Add to list </strong>
+    <input type="submit" class"form-control" value="+" class="btn btn-success">
+  </form>
+
+  <!-- Display -->
   <table class="table table-hover">
     <thead>
       <td> What needs to be done? </td>
