@@ -6,4 +6,3 @@ in this app you can :
 2) Mark todo items complete
 3) Delete todo items
 
-<tt>rake doc:app</tt>.
