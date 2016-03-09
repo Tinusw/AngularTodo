@@ -5,16 +5,13 @@
 <!-- View Table -->
 <div ng-controller="ItemsCtrl">
 <!-- Input -->
-  <form class="form-inline">
+  <form class="form-inline" ng-submit="addItem()">
 
     <strong>Add Item: </strong>
-    <input type="text"  class="form-control" placeholder="I need to...">
-
-    <strong>By: </strong>
-    <input type="date" class="form-control" placeholder="">
+    <input type="text"  class="form-control" placeholder="I need to..." ng-model="newItem.desc">
 
     <strong>Criticality: </strong>
-    <input type="number" class="form-control" min ="1" max="3" placeholder="3">
+    <input type="number" class="form-control" min ="1" max="3" placeholder="3" text="3" ng-model="newItem.crit">
     
     <strong>Add to list </strong>
     <input type="submit" class"form-control" value="+" class="btn btn-success">
@@ -23,17 +20,27 @@
   <!-- Display -->
   <table class="table table-hover">
     <thead>
-      <td> What needs to be done? </td>
-      <td> Done? </td>
+      <td>
+        <strong> What needs to be done? </strong> 
+      </td>
+      <td>
+        <strong> Criticality </strong> 
+      </td>
+      <td>
+        <strong> Complete </strong> 
+      </td>
     </thead>
-    <tr ng-repeat="item in items">
+    <tr ng-repeat="item in items | orderBy:'-crit':reverse">
       <td> 
         {{item.desc}}
       </td>
       <td>
-        {{item.done}}
-        <small ng-show="item.crit"><br>{{item.crit}}</small>
+        <p ng-show="item.crit"><br>{{item.crit}}</p>
       </td>
+      <td>
+        <button ng-click="deleteItem(item)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+    </td>
+
   </tr>
   </table>
 </div>
