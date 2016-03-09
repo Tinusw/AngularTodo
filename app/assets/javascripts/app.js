@@ -2,6 +2,12 @@
 
 var app = angular.module('todo', ['ngResource']);
 
+// Workaround for turbolinks gem
+
+$(document).on('ready page:load', function() {
+	angular.bootstrap(document.body, ['todo'])
+});
+
 // Require factory angular service
 
 app.factory('models', ['$resource',function($resource){
@@ -12,13 +18,7 @@ app.factory('models', ['$resource',function($resource){
 	return x;
 }]);
 
-// Workaround for turbolinks gem
-
-$(document).on('ready page:load', function() {
-	angular.bootstrap(document.body, ['todo'])
-});
-
-// Actual Controller
+// Items Controller
 app.controller('ItemsCtrl', ['$scope', 'models', function($scope, models){
 
 	// Setting items = to our models factory
@@ -29,7 +29,7 @@ app.controller('ItemsCtrl', ['$scope', 'models', function($scope, models){
   	item = models.items.save($scope.newItem, function(){
   		recent_item = models.items.get({id: item.id});
   		$scope.items.push(recent_item);
-  		$scope.newOrder = '';
+  		$scope.newItem = '';
   	});
 }
   
