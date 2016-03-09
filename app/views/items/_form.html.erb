@@ -11,15 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="col-xs-2 col-md-4" id="inputForm")>
+    <div class="form-group" id=formProd>
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: 'form-control col-lg-1', placeholder: 'Required' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :crit %><br>
+      <%= f.text_field :crit, class: 'form-control', placeholder: 'Required'  %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :done %><br>
-    <%= f.check_box :done %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  
 <% end %>
