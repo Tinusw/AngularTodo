@@ -1,15 +1,20 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery
+  skip_before_action :verify_authenticity_token, if: :json_request?
+  respond_to :json, :html
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.all.to_json(:include => [:title, :crit])
+    respond_with @items
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    @item = Item.find(params[:id]).to_json(:include => [:title, :crit])
+    respond_with @item
   end
 
   # GET /items/new
@@ -17,24 +22,11 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  # GET /items/1/edit
-  def edit
-  end
-
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
-    end
+    @item = Item.create(item_params)
+    respond_with @order
   end
 
   # PATCH/PUT /items/1
@@ -54,11 +46,13 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with Item.destroy(params[:id])
+  end
+
+  protected
+
+  def json_request?
+    request.format.json?
   end
 
   private
@@ -69,6 +63,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :done)
+      params.require(:item).permit(:title, :crit, :done)
     end
 end
