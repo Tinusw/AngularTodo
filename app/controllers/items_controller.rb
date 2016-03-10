@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between actions. WTF IS THIS FOR?
     def set_item
       @item = Item.find(params[:id])
     end
