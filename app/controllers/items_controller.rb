@@ -18,7 +18,8 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new(item_params)
+    @item = Item.new(item_params).save
+
     respond_with @item
   end
 
@@ -29,7 +30,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params).save
     respond_with @item
 
     # respond_to do |format|
