@@ -1,13 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Todo List</h1>
-
 <!-- View Table -->
-<div ng-controller="ItemsCtrl">
-<!-- Input -->
-  <form class="form-inline" ng-submit="addItem()">
+<div ng-controller="ItemsCtrl" id="app">
+  <h1 class="title">Todo List</h1>
 
-     <input type="hidden" value="{{items[items.length - 1].id + 1 }}" ng-model="newItem.id">
+  <!-- Input -->
+  <form class="form-inline" ng-submit="addItem()">
+    
+    <input type="hidden" value="{{items[items.length - 1].id + 1 }}" ng-model="newItem.id">
 
     <strong>Add Item: </strong>
     <input type="text"  class="form-control" placeholder="I need to..." ng-model="newItem.title">
@@ -35,45 +33,15 @@
     <tr ng-repeat="item in items | orderBy:'-crit':reverse">
       <td> 
         <p ng-show="item.title"><br> {{item.title}}</p>
-        <p ng-show="item.id"><br>item id ={{item.id}}</p>
       </td>
       <td>
         <p ng-show="item.crit"><br>{{item.crit}}</p>
       </td>
       <td>
         <button ng-click="deleteItem(item)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
-    </td>
-
-  </tr>
-  </table>
-</div>
-
-
-
-
-
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Crit</th>
-      <th colspan="3"></th>
+      </td>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.title %></td>
-        <td><%= item.crit %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+    <p id="notice"><%= notice %></p>
+  </table>
+  <h6 class="footer"> &copy Tinus Wagner</h6>
+</div>
