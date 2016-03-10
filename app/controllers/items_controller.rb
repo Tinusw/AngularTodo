@@ -19,8 +19,16 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new(item_params).save
-
-    respond_with @item
+    respond_to do |format|
+      if @item.save
+        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.json { render :show, status: :created, location: @item }
+      else
+        format.html { render :new }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
+    # respond_with @item
   end
 
   # GET /items/1/edit
@@ -31,17 +39,17 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params).save
-    respond_with @item
+    # respond_with @item
 
-    # respond_to do |format|
-    #   if @item.save
-    #     format.html { redirect_to @item, notice: 'Item was successfully created.' }
-    #     format.json { render :show, status: :created, location: @item }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @item.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @item.save
+        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.json { render :show, status: :created, location: @item }
+      else
+        format.html { render :new }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /items/1
@@ -62,11 +70,10 @@ class ItemsController < ApplicationController
   # DELETE /items/1.json
   def destroy
     @item.destroy
-    respond_with Item.destroy(params[:id])
-    # respond_to do |format|
-    #   format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
+    respond_to do |format|
+      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   protected
