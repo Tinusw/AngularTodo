@@ -18,8 +18,8 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
-    respond_with Item.new(item_params)
+    @item = Item.new(item_params)
+    respond_with @item
   end
 
   # GET /items/1/edit
@@ -82,6 +82,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :crit)
+      params.permit(:title, :crit)
     end
 end
