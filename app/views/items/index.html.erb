@@ -34,8 +34,8 @@
     </thead>
     <tr ng-repeat="item in items | orderBy:'-crit':reverse">
       <td> 
-        <p ng-show="item.title"><br>{{item.title}}</p>
-        <p ng-show="item.id"><br> {{item.id}}</p>
+        <p ng-show="item.title"><br> {{item.title}}</p>
+        <p ng-show="item.id"><br>item id ={{item.id}}</p>
       </td>
       <td>
         <p ng-show="item.crit"><br>{{item.crit}}</p>
