@@ -3,13 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+/* media queries */
+@media (min-width: 1200px){
+	#app {
+		width: 50%;
+	}
+}
+
+/*normal*/
 #app {
-	width: 50%;
+	/*width: 50%;*/
 	background-color: rgba(128, 128, 128, 0.6);
 	margin: auto;
 	border-radius: 12px;
 	padding: 1% 1% 1% 1%;
 }
+
+
 
 .title {
 	text-align: center;
