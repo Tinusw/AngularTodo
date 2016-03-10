@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new(item_params).save
+    @item = Item.new(item_params)
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -38,11 +38,11 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params).save
+    @item = Item.new(item_params)
     # respond_with @item
 
     respond_to do |format|
-      if @item.save(item_params)
+      if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
