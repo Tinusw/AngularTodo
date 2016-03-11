@@ -1,8 +1,8 @@
 == Single Page Todo Using Rails and Angular
 
-in this app you can :
+This application is an experiment in how well a Rails backend plays with an Angular front-end. The result? Pretty nicely.
 
-1) Add todo items
-2) Mark todo items complete
-3) Delete todo items
+Feel free to check it out:
+
+https://boiling-springs-86181.herokuapp.com/
 
