@@ -4,22 +4,28 @@
 
 
 /* media queries */
+@media (max-width: 765px){
+ .btn-success {
+	margin-top: 2%;
+	width: 40%;
+ }
+}
+
 @media (min-width: 1200px){
 	#app {
 		width: 50%;
 	}
 }
 
-/*normal*/
+/**/
+/*CSS*/
+/**/
 #app {
-	/*width: 50%;*/
 	background-color: rgba(128, 128, 128, 0.6);
 	margin: auto;
 	border-radius: 12px;
 	padding: 1% 1% 1% 1%;
 }
-
-
 
 .title {
 	text-align: center;
@@ -37,3 +43,4 @@
 .form-inline strong {
 	font-size: 1.4em;
 }
+

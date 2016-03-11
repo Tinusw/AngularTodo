@@ -13,36 +13,37 @@
 
     <strong>Criticality: </strong>
     <input type="number" class="form-control" min ="1" max="3" placeholder="3" text="3" ng-model="newItem.crit">
-    
-    <strong>Add to list </strong>
+          
     <input type="submit" class"form-control" value="+" class="btn btn-success">
   </form>
 
   <!-- Display -->
-  <table class="table table-hover">
-    <thead>
-      <td>
-        <strong> What needs to be done? </strong> 
-      </td>
-      <td>
-        <strong> Criticality </strong> 
-      </td>
-      <td>
-        <strong> Complete </strong> 
-      </td>
-    </thead>
-    <tr ng-repeat="item in items | orderBy:'-crit':reverse">
-      <td> 
-        <p ng-show="item.title"><br> {{item.title}}</p>
-      </td>
-      <td>
-        <p ng-show="item.crit"><br>{{item.crit}}</p>
-      </td>
-      <td>
-        <button ng-click="deleteItem(item)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
-      </td>
-    </tr>
-    <p id="notice"><%= notice %></p>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <td>
+          <strong> To do </strong> 
+        </td>
+        <td>
+          <strong> Criticality </strong> 
+        </td>
+        <td>
+          <strong> Complete </strong> 
+        </td>
+      </thead>
+      <tr ng-repeat="item in items | orderBy:'-crit':reverse">
+        <td> 
+          <p ng-show="item.title"><br> {{item.title}}</p>
+        </td>
+        <td>
+          <p ng-show="item.crit"><br>{{item.crit}}</p>
+        </td>
+        <td>
+          <button ng-click="deleteItem(item)" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
   <h6 class="footer"> &copy Tinus Wagner</h6>
 </div>
